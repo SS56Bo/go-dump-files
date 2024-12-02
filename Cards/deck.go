@@ -13,7 +13,7 @@ func newDeck() deck{
 	newCards := deck{}
 
 	cardSuits := []string{"Spades", "Diamonds", "Clubs", "Hearts"}
-	cardNumber := []string{"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "King", "Queen", "Jack"}
+	cardNumber := []string{"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten","King", "Queen", "Jack"}
 
 	for _, suits := range cardSuits {
 		for _, num := range cardNumber {
@@ -26,7 +26,7 @@ func newDeck() deck{
 
 func (d deck) print(){
 	for i, card := range d {
-		fmt.Println(i, card)
+		fmt.Println(i+1, card)
 	}
 }
 
@@ -40,4 +40,14 @@ func  (d deck) toString() string {
 
 func  (d deck) toHardDrive(fileName string) error{
 	return os.WriteFile(fileName, []byte(d.toString()), 0666)
+}
+
+func newDeckFromFile(filenmae string) deck {
+	bs, err := os.ReadFile(filenmae)
+	if err != nil{
+		fmt.Println("Error: ", err)
+		os.Exit(1)
+	}
+	store :=  strings.Split(string(bs), ",")
+	return deck(store)
 }
