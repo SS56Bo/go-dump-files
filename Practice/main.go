@@ -12,7 +12,7 @@ import "fmt"
 type Book struct {
 	Title string
 	Author string
-	Year int32
+	Year int32 
 }
 
 func main() {

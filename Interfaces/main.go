@@ -6,17 +6,25 @@ type bot interface {
 	getMessage() string
 }
 
+func getGreeting(b bot) {
+	fmt.Println(b.getMessage())
+}
+
 type englishBot struct{}
 type spanishBot struct{}
 
-func main() {
-	eB := englishBot{}
-	sB := spanishBot{}
+func main(){
+	eb := englishBot{}
+	sb := spanishBot{}
 
-	getMessage(eB)
-	getMessage(sB)
+	getGreeting(eb)
+	getGreeting(sb)
 }
 
-func getMessage(bots) string {
-	fmt.Println()
+func (englishBot) getMessage() string {
+	return "Hello there!"
+}
+
+func (spanishBot) getMessage() string {
+	return "Hola!"
 }
